@@ -57,3 +57,11 @@ Projects need to be approved prior to launching into them, so take some time to 
 # in config/environment.rb add this line:
 ActiveRecord::Base.logger = nil
 ```
+
+<!-- User stories
+1. As a user, I want to be able to log in and view my searches
+2. As a user, I want to retreive the entire series of my favorite comic superhero.
+3. As a user, I want to view a few different comics for characters within a series.
+4. As a user, I'd like to view random suggestions for comics to read.
+5. As a user, I'd like to view how many times characters interact within a series' storyline. ** -->
+
