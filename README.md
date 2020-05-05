@@ -63,5 +63,9 @@ User stories
 <!-- 2. As a user, I want to retreive the entire series of my favorite comic superhero. -->
 3. As a user, I want to view a few different comics for characters within a series.
 <!-- 4. As a user, I'd like to view random suggestions for comics to read. -->
-5. As a user, I'd like to view how many times characters interact within a series' storyline. **
+5. As a user, I'd like to view how many times characters interact within a series' storyline. ** (wishlist)
+6. CLI - Jesse
+7. Character class - get author method working
+8. 
+
 
