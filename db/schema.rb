@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200505180630) do
+ActiveRecord::Schema.define(version: 20200505185847) do
+
+  create_table "character_comics", force: :cascade do |t|
+    t.integer "comic_id"
+    t.integer "character_id"
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.string "alias"
+  end
+
+  create_table "comics", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "publish_date"
+    t.integer  "series_id"
+  end
 
   create_table "series", force: :cascade do |t|
     t.string "name"

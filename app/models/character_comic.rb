@@ -1,4 +1,4 @@
 class CharacterComic < ActiveRecord::Base 
-    has_many :comics
-    has_many :character
+    belongs_to :comic
+    belongs_to :character
 end

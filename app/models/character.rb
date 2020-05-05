@@ -1,5 +1,5 @@
-class Character < ActiveRecord::Base 
+class Character < ActiveRecord::Base
+    has_many :character_comics 
     has_many :comics, through: character_comics
-    belongs_to :character_comic
 
 end
