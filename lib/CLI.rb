@@ -1,7 +1,3 @@
-require_relative '../config/environment'
-require_relative '../db/seeds.rb'
-require 'json'
-require 'pry'
 
 
 def welcome

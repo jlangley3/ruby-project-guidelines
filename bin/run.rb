@@ -1,9 +1,7 @@
 require_relative '../config/environment'
 require_relative '../db/seeds.rb'
-require 'json'
-require 'pry'
-require_all 'lib'
-require_all 'app'
+
+
 
 def run
     welcome
