@@ -11,8 +11,4 @@ class Comic < ActiveRecord::Base
         self.all.sample(num)
     end
 
-    
-
-
-
 end
