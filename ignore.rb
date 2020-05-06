@@ -24,9 +24,3 @@ def menu
       def user_input
         @last_input = gets.strip
       end
-
-      def call
-        puts "Welcome to your CLI Blog!"
-        login
-        menu
-      end
