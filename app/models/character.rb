@@ -12,6 +12,10 @@ class Character < ActiveRecord::Base
         comics = Comic.all.select {|comic| com_ids.include?(comic.id)}
     end
 
+    def list_of_comics
+        comics.map {|comic| comic.name}
+    end
+
     def authors
         comics.map {|comic| comic.author}
     end
