@@ -4,7 +4,6 @@ Comic.destroy_all
 CharacterComic.destroy_all
 
 
-
 black_panther = Character.find_or_create_by(name: "Black Panther", alias: "T'Challa")
 spider_man = Character.find_or_create_by(name: "Spiderman", alias: "Peter Parker")
 
@@ -21,6 +20,8 @@ black_panther.comics << avengers_1
 black_panther.comics << avengers_2
 spider_man.comics << spidey_1
 spider_man.comics << spidey_2
+
+
 
 # spidey_character_comics = CharacterComic.find_or_create_by(character: spider_man, comic: spidey_1)
 

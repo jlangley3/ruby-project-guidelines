@@ -1,5 +1,5 @@
 require_relative '../config/environment'
-# require_relative '../db/seeds.rb'
+require_relative '../db/seeds.rb'
 
 
 
@@ -9,7 +9,7 @@ def run
     # get_comics_by_publisher_range
 end
 
-run
 
+run
 #pp Comic.random
 
