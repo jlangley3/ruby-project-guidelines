@@ -78,6 +78,7 @@ end
     menu
 end
 
+#jesse
 def get_start_year
         sleep 0.20
         puts "\n"
@@ -106,6 +107,7 @@ def get_start_year
         return start_year
     end
 
+    #jesse
     def get_end_year
             puts "Ok great! Now type in a 4 digit year END year\n\n"
             end_year = gets.chomp
@@ -128,6 +130,7 @@ def get_start_year
         end
     end
 
+        #saima
         def comics_for_character
             puts "Please choose a character:"
             puts "1. Spider Man"
@@ -137,6 +140,25 @@ def get_start_year
             puts input.list_of_comics
         end
 
+        #saima
+        def list_of_authors
+        end
+
+        #josh
+        def view_series_for_character
+        end
+
+        #josh
+        def view_character_alias
+        end
+
+        #jesse
+        def view_descriptions_for_series
+        end
+
+        #jesse
+        def view_storylines_for_comics
+        end
 
         def return_to_menu
             puts "Type menu to return to menu"
