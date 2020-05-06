@@ -12,14 +12,13 @@ require 'pry'
 
 def welcome
     # Welcoming the user to our program
-    puts "***************\n\n"
+    puts "**********************************\n\n"
     puts "Welcome to the CLI Marvel Library!\n\n"
+    puts "**********************************\n\n"
 end
+
 def get_search_terms
     # get some search terms from the user
-    # puts "***************\n\n"
-    # puts "What would you like to search for?\n\n"
-    puts "******************************\n\n"
     puts "Would you like a random comic?\n" + "Type: yes or no\n\n"
     
     input = gets.chomp
