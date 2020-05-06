@@ -30,12 +30,13 @@ def user_input
 end
 
 def main_menu_loop
+    user_input
     while user_input != "exit"
-      case user_input.to_i
-      when 1
+      user_input.to_i
+      when user_input = 1
         get_search_terms
         break
-      when 2
+      when user_input = 2
         get_comics_by_publisher_range
         break
       else
@@ -56,14 +57,11 @@ def get_search_terms
 end
 
 def get_comics_by_publisher_range
-    puts "Would you like a list of comics by date?\n" + "Type: yes or no\n\n"
-    
-    input = gets.chomp
-    if input.empty?
-        puts "You must type yes or no"
-        input = get_comics_by_publisher_range
-    elsif input.downcase == "yes"
+
+
+def get_start_year
         puts "\nPlease Wait...\n\n"
+        sleep 0.99
         (". . . . . \n").split(" ").each {|c| print c ; sleep 0.25}
         puts "\n\nOk great! I need range of dates by year.\n\n" 
         (". . L O A D I N G  . . Done! . . .\n").split(" ").each {|c| print c ; sleep 0.25}
@@ -74,16 +72,20 @@ def get_comics_by_publisher_range
         if start_year.to_i == nil  
             puts "WRONG! Try again please!"
             puts "\n"
-            get_comics_by_publisher_range
+            get_start_year
         elsif start_year.to_i < 1900 
             puts "WRONG! Try again please!"
             puts "\n"
-            get_comics_by_publisher_range
-        elsif start_year.to_i > 2030
+            get_start_year
+        elsif start_year.to_i > 2099
             puts "WRONG! Try again please!"
             puts "\n"
-            get_comics_by_publisher_range
+            get_start_year
         end
+        return start_year
+    end
+
+    def get_end_year
         puts "Ok great! now I need you to type in a 4 digit year END year\n\n"
         end_year = gets.chomp
         puts "\n"
@@ -91,7 +93,7 @@ def get_comics_by_publisher_range
             puts "WRONG! Try again please!"
             puts "\n"
             get_comics_by_publisher_range
-        elsif end_year.to_i < 1900 
+        elsif end_year.to_i < start_year.to_i
             puts "WRONG! Try again please!"
             puts "\n"
             get_comics_by_publisher_range
@@ -122,3 +124,12 @@ def get_comics_by_publisher_range
     end
     return input
 end
+
+def publish_range
+    puts "\nPerfect! Thanks! \n\n"
+    (". . . . . . . . . . . L O A D I N G . . . . . . . . . . . . .Done! \n").split(" ").each {|c| print c ; sleep 0.25}
+     answer = Comic.publish_range(start_year.to_i, end_year.to_i).map{|publication| puts "\n\n*********************\n#{publication.name}\n*********************\n"}
+     if answer == nil
+     end 
+    end
+     
