@@ -16,7 +16,10 @@ avengers_2 = Comic.find_or_create_by(name: "Avengers 2", publish_date: 2018, ser
 spidey_1 = Comic.find_or_create_by(name: "Spidey 1", publish_date: 1988, series: spidey_series, author: "Walt Whitman")
 spidey_2 = Comic.find_or_create_by(name: "Spidey 2", publish_date: 2005, series: spidey_series, author: "Toni Morrison")
 
+black_panther.comics << avengers_1
+black_panther.comics << avengers_2
 spider_man.comics << spidey_1
+spider_man.comics << spidey_2
 
 # spidey_character_comics = CharacterComic.find_or_create_by(character: spider_man, comic: spidey_1)
 

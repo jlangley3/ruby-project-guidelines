@@ -7,9 +7,16 @@ class Character < ActiveRecord::Base
     end
 
     def authors
-        comics = CharacterComic.all.select {|cc| cc.character_id == self.id}
-        comics.map {|comic| comic.comic_id}
+        charcom = CharacterComic.all.select {|cc| cc.character_id == self.id}
+        char_ids = charcom.map {|comic| comic.comic_id}
+        comics = Comic.all.select {|comic| char_ids.include?(comic.id)}
+        authors = comics.map {|comic| comic.author}
     end
 
+    def series
+        charcom = CharacterComic.all.select {|cc| cc.character_id == self.id}
+        char_ids = charcom.map {|comic| comic.comic_id}
+        comics = Comic.all.select {|comic| char_ids.include?(comic.id)}
+    end
 
 end
