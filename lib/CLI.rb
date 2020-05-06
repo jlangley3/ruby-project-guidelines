@@ -132,12 +132,7 @@ def get_start_year
 
         #saima
         def comics_for_character
-            puts "Please choose a character:"
-            puts "1. Spider Man"
-            puts "2. Black Panther"
-            input = gets.chomp
-            input = Character.last
-            puts input.list_of_comics
+            self.list_of_comics
         end
 
         #saima
