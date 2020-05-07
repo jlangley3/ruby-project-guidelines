@@ -154,6 +154,30 @@ end
             # # return character
         end
 
+        def find_user_series
+            puts "Please choose a series:"
+            index_with_series = Series.all.each_with_index {|series, ind| puts "#{ind+1}. #{series.name}"}
+            
+            input = gets.chomp.to_i
+            return_series = index_with_series.find_all {|series| index_with_series.find_index(series)+1 == input}
+            return return_series[0]
+            
+            # character = return_character.find_by(name: input_plus_number)
+            # # return character
+        end
+
+        def find_user_comic
+            puts "Please choose a comic:"
+            index_with_comic = Comic.all.each_with_index {|comic, ind| puts "#{ind+1}. #{comic.name}"}
+            
+            input = gets.chomp.to_i
+            return_comic = index_with_comic.find_all {|comic| index_with_comic.find_index(comic)+1 == input}
+            return return_comic[0]
+            
+            # character = return_character.find_by(name: input_plus_number)
+            # # return character
+        end
+
         def comics_for_character
             #this gives a list of characters to choose from,
             #takes user input 
@@ -181,49 +205,51 @@ end
 
         #jesse
         def view_descriptions_for_series
-            puts "please enter a series name"
-            input = gets.chomp
-          if input.empty?
-            puts "You did not put anything in!"
-            view_descriptions_for_series
-          end
-          input.gsub!(" ", "")
-          input.downcase
-          input.capitalize
-          description = Series.all.where(name: input).pluck(:description)
-          if description == []
-            puts "\n********************\n\n"
-            puts "Sorry No Results Found"
-            puts "\n********************\n"
-            return_to_menu
-        else
-            description = description.join
-          print "\n-\n#{description}\n-\n\n"
-            return_to_menu
-        end
+            puts find_user_series.description
+        #     puts "please enter a series name"
+        #     input = gets.chomp
+        #   if input.empty?
+        #     puts "You did not put anything in!"
+        #     view_descriptions_for_series
+        #   end
+        #   input.gsub!(" ", "")
+        #   input.downcase
+        #   input.capitalize
+        #   description = Series.all.where(name: input).pluck(:description)
+        #   if description == []
+        #     puts "\n********************\n\n"
+        #     puts "Sorry No Results Found"
+        #     puts "\n********************\n"
+        #     return_to_menu
+        # else
+        #     description = description.join
+        #   print "\n-\n#{description}\n-\n\n"
+        #     return_to_menu
+        # end
     end
 
         #jesse
         def view_storylines_for_comics
-            puts "please enter a comic name"
-            input = gets.chomp
-          if input.empty?
-            puts "You did not put anything in!"
-            view_descriptions_for_series
-          end
-          input.downcase
-          input.capitalize
-            comic = Comic.all.where(name: input).pluck(:storyline)
-            if comic == []
-                puts "\n********************\n\n"
-                puts "Sorry No Results Found"
-                puts "\n********************\n"
-                return_to_menu
-            else
-                comic = comic.join(" ")
-              print "\n-\n#{comic}\n-\n\n"
-                return_to_menu
-            end
+            puts find_user_comic.storyline
+        #     puts "please enter a comic name"
+        #     input = gets.chomp
+        #   if input.empty?
+        #     puts "You did not put anything in!"
+        #     view_descriptions_for_series
+        #   end
+        #   input.downcase
+        #   input.capitalize
+        #     comic = Comic.all.where(name: input).pluck(:storyline)
+        #     if comic == []
+        #         puts "\n********************\n\n"
+        #         puts "Sorry No Results Found"
+        #         puts "\n********************\n"
+        #         return_to_menu
+        #     else
+        #         comic = comic.join(" ")
+        #       print "\n-\n#{comic}\n-\n\n"
+        #         return_to_menu
+        #     end
         end
 
         # def return_to_menu
