@@ -1,16 +1,17 @@
 
 require_relative '../config/environment.rb'
-
-def welcome
+# class Cli
+#     attr_accessor :start_year, :end_year
+    def welcome
     # Welcoming the user to our program
     puts "**********************************\n\n"
     puts "Welcome to the CLI Marvel Library!\n\n"
     puts "**********************************\n\n"
     sleep 0.80
     menu
-end
+    end
 
-def menu
+    def menu
         sleep 0.01
         puts "Type the NUMBER of the thing you would like to do below."
             sleep 0.25
@@ -28,11 +29,11 @@ def menu
         puts "\n"
         main_menu_loop
     
-end
+    end
 
-def user_input
-    input = gets.chomp
-end
+    def user_input
+        input = gets.chomp
+    end
 
 def main_menu_loop
     user_call = user_input 
@@ -47,89 +48,96 @@ def main_menu_loop
       when user_call = 3
         comics_for_character
         break
-      else
-        menu
+      when user_call = 4
+        list_of_authors
+        break
+      when user_call = 5
+        view_series_for_character
+        break
+      when user_call = 6
+        view_character_alias
+        break
+      when user_call = 7
+        view_descriptions_for_series
+        break
+      when user_call = 8
+        view_storylines_for_comics
+    #     break
+    #   when user_call == "exit"
+    #     return
+    #   else
+    #     menu
         break
       end
     end
   end
   
-def get_search_terms
-        ("L O A D I N G\n").split(" ").each {|c| print c ; sleep 0.25}
+    def get_search_terms  
+        # ("L O A D I N G\n").split(" ").each {|c| print c ; sleep 0.25}
         sleep 0.991
         comic = Comic.random
          comic.map{|title_page| puts "\n\n************\n#{title_page.name}\n************\n"}
-         puts "\n\n"
+         puts "\n"
          return_to_menu
-end
-
-def publish_range
-    puts "\nPerfect! Thanks! \n\n"
-    ("L O A D I N G! \n").split(" ").each {|c| print c ; sleep 0.25}
-    answer = Comic.publish_range(get_start_year.to_i, get_end_year.to_i).map do |publication| 
-    puts "\n\n************\n#{publication.name}\n************\n"
-end
-    if answer == nil
-        puts "\n********************\n"
-        puts "Sorry No Results Found"
-        puts "\n********************\n"
-    else puts answer
     end
-    menu
-end
 
-#jesse
-def get_start_year
-        sleep 0.20
-        puts "\n"
-        # ("W a i t . . . \n").split(" ").each {|c| print c ; sleep 0.25}
-        puts "\n\nOk great! I need range of dates by year.\n\n" 
+    def publish_range
+    #puts "\nPerfect! Thanks! \n\n"
+    ("L O A D I N G! \n").split(" ").each {|c| print c ; sleep 0.25}
+        puts "\n\nI need a range of dates by year.\n\n" 
         ("L O A D I N G\n").split(" ").each {|c| print c ; sleep 0.25}
         puts "\n"
         puts "\nEarliest year first...\n\n"
         start_year = gets.chomp
-        puts "\n"
-        if start_year.to_i == nil  
+        if start_year.downcase == "exit"
+            menu 
+        elsif start_year.to_i == nil  
             puts "WRONG! Try again please!"
             puts "\n"
-            get_start_year
-         
+            publish_range
         elsif start_year.to_i < 1900 
             puts "WRONG! Try again please!"
             puts "\n"
-            get_start_year
-            
+            publish_range
         elsif start_year.to_i > 2099
             puts "WRONG! Try again please!"
             puts "\n"
-            get_start_year
-        end
-        return start_year
-    end
-
-    #jesse
-    def get_end_year
-            puts "Ok great! Now type in a 4 digit year END year\n\n"
-            end_year = gets.chomp
-            puts "\n"
-        if end_year.to_i == nil  
-            puts "WRONG! Try again please!"
-            puts "\n"
-            get_end_year
-        elsif end_year.to_i < get_start_year.to_i
-            puts "WRONG! Try again please!"
-            puts "\n"
-            get_end_year
-        elsif end_year.to_i >= 2099
-            puts "WRONG! Try again please!"
-            puts "\n"
-            get_end_year
+            publish_range
         else
-            puts "\nPerfect! Thanks! \n\n"
-            return end_year
+            start_year
         end
+        puts "\n"
+        puts "Ok great! Now type in a 4 digit year END year\n\n"
+        end_year = gets.chomp
+        if end_year.downcase == "exit"
+            menu
+        # elsif end_year.to_i == nil  
+        #     start_year = end_year 
+        elsif end_year.to_i < 1900
+            puts "WRONG! Try again please!"
+            puts "\n"
+            publish_range
+        elsif end_year.to_i < start_year.to_i
+            puts "WRONG! Try again please!"
+            puts "\n"
+            publish_range
+        else
+            end_year
+        end
+            puts "\nPerfect! Thanks! \n"
+    answer = Comic.publish_range(start_year.to_i, end_year.to_i)
+    if answer == []
+        puts "\n********************\n\n"
+        puts "Sorry No Results Found"
+        puts "\n********************\n"
+        return_to_menu
+    else
+        answer.map do |publication| 
+        puts "\n*\n#{publication.name}\n*\n\n"
+        end
+        return_to_menu
     end
-
+end
         #saima
         def comics_for_character
             puts "Please choose a character:"
@@ -154,28 +162,71 @@ def get_start_year
 
         #jesse
         def view_descriptions_for_series
+            puts "please enter a series name"
+            input = gets.chomp
+          if input.empty?
+            puts "You did not put anything in!"
+            view_descriptions_for_series
+          end
+          input.gsub!(" ", "")
+          input.downcase
+          input.capitalize
+          description = Series.all.where(name: input).pluck(:description)
+          if description == []
+            puts "\n********************\n\n"
+            puts "Sorry No Results Found"
+            puts "\n********************\n"
+            return_to_menu
+        else
+            description = description.join
+          print "\n-\n#{description}\n-\n\n"
+            return_to_menu
         end
+    end
 
         #jesse
         def view_storylines_for_comics
+            puts "please enter a comic name"
+            input = gets.chomp
+          if input.empty?
+            puts "You did not put anything in!"
+            view_descriptions_for_series
+          end
+          input.downcase
+          input.capitalize
+            comic = Comic.all.where(name: input).pluck(:storyline)
+            if comic == []
+                puts "\n********************\n\n"
+                puts "Sorry No Results Found"
+                puts "\n********************\n"
+                return_to_menu
+            else
+                comic = comic.join(" ")
+              print "\n-\n#{comic}\n-\n\n"
+                return_to_menu
+            end
         end
 
-        def return_to_menu
-            puts "Type menu to return to menu"
-            input = gets.chomp
-            if input == "menu"
-            menu  
-            end
+        # def return_to_menu
+        #     puts "Type menu to return to menu"
+        #     input = gets.chomp
+        #     if input == "menu"
+        #     menu  
+        #     end
         
-    end
+        # end
 
- 
-
-    def return_to_menu
-        # use gets to capture the user's input. This method should return that input, downcased.
-        puts "Hit enter for menu"
-        input = gets.chomp
-        menu
-end
+        def return_to_menu
+            # use gets to capture the user's input. This method should return that input, downcased.
+            puts "Hit enter for menu"
+            input = gets.chomp
+            menu
+        end
 
 # spider_man = Character.find_or_create_by(name: "Spiderman", alias: "Peter Parker")
+
+
+
+
+
+
