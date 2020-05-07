@@ -1,12 +1,13 @@
 
 require_relative '../config/environment.rb'
 
+
 def welcome
     # Welcoming the user to our program
     puts "**********************************\n\n"
     puts "Welcome to the CLI Marvel Library!\n\n"
     puts "**********************************\n\n"
-    sleep 0.80
+    sleep 0.50
     menu
 end
 
@@ -133,11 +134,9 @@ def get_start_year
         #saima
         def comics_for_character
             puts "Please choose a character:"
-            puts "1. Spider Man"
+            puts "1. Spiderman"
             puts "2. Black Panther"
-            input = gets.chomp
-            input = Character.last
-            puts input.list_of_comics
+
         end
 
         #saima
