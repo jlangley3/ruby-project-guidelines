@@ -148,44 +148,35 @@ end
             
             input = gets.chomp.to_i
             return_character = index_with_character.find_all {|char| index_with_character.find_index(char)+1 == input}
-            # binding.pry
             return return_character[0]
             
             # character = return_character.find_by(name: input_plus_number)
             # # return character
         end
 
-        #saima
         def comics_for_character
             #this gives a list of characters to choose from,
             #takes user input 
             #returns comics name affiliated with character 
             found_character = find_user_character
             puts found_character.list_of_comics
-
-            #
-            # puts "1. Spiderman"
-            # puts "2. Black Panther"
-            # list_of_characters.all.map do |S|
-            # input = gets.chomp
-            # character = Character.find_by(name: input)
-            # # spiderman.list_of_comics
-            # # last_character = Character.last
-            # puts character.list_of_comics
-            
-            # self.list_of_comics
+            return_to_menu
         end
 
-        #saima
         def list_of_authors
+            puts find_user_character.authors
+            return_to_menu
         end
 
-        #josh
+        
         def view_series_for_character
+            puts find_user_character.series_name
+            return_to_menu
         end
-
-        #josh
+      
         def view_character_alias
+            puts find_user_character.alias
+            return_to_menu
         end
 
         #jesse
@@ -246,6 +237,7 @@ end
 
         def return_to_menu
             # use gets to capture the user's input. This method should return that input, downcased.
+            puts "\n\n"
             puts "Hit enter for menu"
             input = gets.chomp
             menu
