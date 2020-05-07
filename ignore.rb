@@ -2,10 +2,12 @@ def get_api
     #make the web request
     response_array = []
     counter = 0
+    while counter <= 2000
     response_string = RestClient.get("http://gateway.marvel.com/v1/public/characters?ts=1&apikey=e52d887d0abdb7be3d552bdcd336787f&hash=15898380eb317e59a304343c08c1ae09&limit=100&offset=#{counter}")
     response_hash = JSON.parse(response_string)
     response_array << response_hash
     counter += 100
+    end
   end
   
   

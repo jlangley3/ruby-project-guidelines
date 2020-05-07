@@ -138,14 +138,37 @@ def main_menu_loop
         return_to_menu
     end
 end
+
+
+
+
+        def find_user_character
+            puts "Please choose a character:"
+            Character.all.each {|character| pp character.name}
+            
+            input = gets.chomp
+            character = Character.find_by(name: input)
+            return character
+        end
+
         #saima
         def comics_for_character
-            puts "Please choose a character:"
-            puts "1. Spider Man"
-            puts "2. Black Panther"
-            input = gets.chomp
-            input = Character.last
-            puts input.list_of_comics
+            #this gives a list of characters to choose from,
+            #takes user input 
+            #returns comics name affiliated with character 
+            found_character = find_user_character
+            puts found_character.list_of_comics
+
+            # puts "1. Spiderman"
+            # puts "2. Black Panther"
+            # list_of_characters.all.map do |S|
+            # input = gets.chomp
+            # character = Character.find_by(name: input)
+            # # spiderman.list_of_comics
+            # # last_character = Character.last
+            # puts character.list_of_comics
+            
+            # self.list_of_comics
         end
 
         #saima
