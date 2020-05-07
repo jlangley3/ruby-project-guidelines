@@ -29,7 +29,6 @@ require_relative '../config/environment.rb'
             puts "Type 'exit' to leave."
             puts "\n"
             main_menu_loop
-        
         end
 
         def user_input
@@ -39,32 +38,32 @@ require_relative '../config/environment.rb'
         def main_menu_loop
             user_call = user_input 
             while user_call != "exit"
-            case user_call.to_i
-            when user_call = 1
-                get_search_terms
-                break
-            when user_call = 2
-                publish_range
-                break
-            when user_call = 3
-                comics_for_character
-                break
-            when user_call = 4
-                list_of_authors
-                break
-            when user_call = 5
-                view_series_for_character
-                break
-            when user_call = 6
-                view_character_alias
-                break
-            when user_call = 7
-                view_descriptions_for_series
-                break
-            when user_call = 8
-                view_storylines_for_comics
-                break
-            end
+                case user_call.to_i
+                when user_call = 1
+                    get_search_terms
+                    break
+                when user_call = 2
+                    publish_range
+                    break
+                when user_call = 3
+                    comics_for_character
+                    break
+                when user_call = 4
+                    list_of_authors
+                    break
+                when user_call = 5
+                    view_series_for_character
+                    break
+                when user_call = 6
+                    view_character_alias
+                    break
+                when user_call = 7
+                    view_descriptions_for_series
+                    break
+                when user_call = 8
+                    view_storylines_for_comics
+                    break
+                end
             end
         end
   
