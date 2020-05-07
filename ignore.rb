@@ -182,3 +182,73 @@ def menu
         end
         return input
     end
+
+
+    #jesse
+    def view_descriptions_for_series
+        puts find_user_series.description
+    #     puts "please enter a series name"
+    #     input = gets.chomp
+    #   if input.empty?
+    #     puts "You did not put anything in!"
+    #     view_descriptions_for_series
+    #   end
+    #   input.gsub!(" ", "")
+    #   input.downcase
+    #   input.capitalize
+    #   description = Series.all.where(name: input).pluck(:description)
+    #   if description == []
+    #     puts "\n********************\n\n"
+    #     puts "Sorry No Results Found"
+    #     puts "\n********************\n"
+    #     return_to_menu
+    # else
+    #     description = description.join
+    #   print "\n-\n#{description}\n-\n\n"
+    #     return_to_menu
+    # end
+end
+
+    #jesse
+    def view_storylines_for_comics
+        puts find_user_comic.storyline
+    #     puts "please enter a comic name"
+    #     input = gets.chomp
+    #   if input.empty?
+    #     puts "You did not put anything in!"
+    #     view_descriptions_for_series
+    #   end
+    #   input.downcase
+    #   input.capitalize
+    #     comic = Comic.all.where(name: input).pluck(:storyline)
+    #     if comic == []
+    #         puts "\n********************\n\n"
+    #         puts "Sorry No Results Found"
+    #         puts "\n********************\n"
+    #         return_to_menu
+    #     else
+    #         comic = comic.join(" ")
+    #       print "\n-\n#{comic}\n-\n\n"
+    #         return_to_menu
+    #     end
+    end
+
+    # def return_to_menu
+    #     puts "Type menu to return to menu"
+    #     input = gets.chomp
+    #     if input == "menu"
+    #     menu  
+    #     end
+    
+    # end
+
+    def return_to_menu
+        # use gets to capture the user's input. This method should return that input, downcased.
+        puts "\n\n"
+        puts "Hit enter for menu"
+        input = gets.chomp
+        menu
+    end
+
+# spider_man = Character.find_or_create_by(name: "Spiderman", alias: "Peter Parker")
+
