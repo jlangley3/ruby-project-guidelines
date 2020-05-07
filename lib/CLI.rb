@@ -144,11 +144,15 @@ end
 
         def find_user_character
             puts "Please choose a character:"
-            Character.all.each {|character| pp character.name}
+            index_with_character = Character.all.each_with_index {|character, ind| puts "#{ind+1}. #{character.name}"}
             
-            input = gets.chomp
-            character = Character.find_by(name: input)
-            return character
+            input = gets.chomp.to_i
+            return_character = index_with_character.find_all {|char| index_with_character.find_index(char)+1 == input}
+            # binding.pry
+            return return_character[0]
+            
+            # character = return_character.find_by(name: input_plus_number)
+            # # return character
         end
 
         #saima
@@ -159,6 +163,7 @@ end
             found_character = find_user_character
             puts found_character.list_of_comics
 
+            #
             # puts "1. Spiderman"
             # puts "2. Black Panther"
             # list_of_characters.all.map do |S|
