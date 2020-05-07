@@ -63,6 +63,9 @@ require_relative '../config/environment.rb'
                 when user_call = 8
                     view_storylines_for_comics
                     break
+                when user_call = 9
+                    all_character_alias
+                    break
                 end
             end
         end
@@ -92,7 +95,6 @@ require_relative '../config/environment.rb'
                 publish_range
             elsif start_year.to_i > 2099
                 puts "\nWRONG! Try again please!"
-                
                 publish_range
             else
                 start_year
@@ -102,9 +104,8 @@ require_relative '../config/environment.rb'
             end_year = gets.chomp
             if end_year.downcase == "exit"
                 menu
-            elsif end_year.to_i < 1900
+            elsif end_year.to_i > 2099
                 puts "\nWRONG! Try again please!"
-                
                 publish_range
             elsif end_year.to_i < start_year.to_i
                 puts "\nWRONG! Try again please!"
@@ -132,6 +133,7 @@ require_relative '../config/environment.rb'
             found_character = find_user(Character).list_of_comics
             answers = found_character.join(", ")
             puts "\n-\n#{answers}\n-\n\n"
+            puts "These are all the comics for your character"
             return_to_menu
         end
 
@@ -139,30 +141,49 @@ require_relative '../config/environment.rb'
             found_authors = find_user(Character).authors
             answers = found_authors.join(" & ")
             puts "\n-\n#{answers}\n-\n\n"
+            puts "This is who wrote your character's comic"
             return_to_menu
         end
         
 
         def view_series_for_character   #5
             puts "\n-\n#{find_user(Character).series_name}\n-\n\n"
+            puts "This is your character's series"
             return_to_menu
         end
         
         def view_character_alias      #6
             puts "\n-\n#{find_user(Character).alias}\n-\n\n"
+            puts "This is your character's alias"
             return_to_menu
         end
 
         
         def view_descriptions_for_series  #7
           puts "\n-\n#{find_user(Series).description}\n-\n\n"
+          puts "This is your series description"
           return_to_menu
         end
 
     
         def view_storylines_for_comics  #8
               puts "\n-\n#{find_user(Comic).storyline}\n-\n\n"
+              puts "This is your comic storyline"
               return_to_menu
+        end
+
+        def all_character_alias
+           puts "\n"
+           found_alias = Character.all_aliases
+           answers = found_alias.join("\n")
+           puts "\n-\n#{answers}\n-\n\n"
+           return_to_menu
+        end
+        
+        def everything_from_a_character
+            
+            #findout everything for your favorite charcter
+
         end
 
         def return_to_menu
@@ -177,12 +198,12 @@ require_relative '../config/environment.rb'
             puts "\n"
             puts "Please choose a #{class_call}:"
             puts "\n"
+            puts "(Type corresponding number)"
             index_with_comic = class_call.all.each_with_index {|a, ind| puts "#{ind+1}. #{a.name}\n"}
             input = gets.chomp.to_i
             if input > index_with_comic.length || input < 1
                 puts "Please enter a valid number"
-                find_user(class_call)
-                
+                find_user(class_call) 
             else
             return_comic = index_with_comic.find_all {|a| index_with_comic.find_index(a)+1 == input}
             return return_comic[0]
