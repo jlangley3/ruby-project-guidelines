@@ -12,18 +12,19 @@ require_relative '../config/environment.rb'
         end
 
         def menu
-            sleep 0.01
-            puts "Type the NUMBER of the thing you would like to do below."
+            puts "What would you like to do?\n"
+                sleep 0.01
+            puts "(Please type corresponding number)"
                 sleep 0.25
             puts "\n\n"
             puts "1. Find a random comic."
             puts "2. Find comics by publish date."
-            puts "3. Find list of comics for a character."
-            puts "4. List authors of a comic."
+            puts "3. Find a list of comics for a character."
+            puts "4. List authors for a comic."
             puts "5. View all series for a character."
-            puts "6. View a characters alias."
-            puts "7. View decriptions for series."
-            puts "8. View storylines for comics."
+            puts "6. View a character's alias."
+            puts "7. View decriptions for a series."
+            puts "8. View the storyline for a comic."
             puts "\n\n"
             puts "Type 'exit' to leave."
             puts "\n"
@@ -70,47 +71,44 @@ require_relative '../config/environment.rb'
         def get_search_terms  
             sleep 0.991
             comic = Comic.all.random
-            comic.map{|title_page| puts "\n\n************\n#{title_page.name}\n************\n"}
+            comic.map{|title_page| puts "\n\n-\n#{title_page.name}\n-\n"}
             puts "\n"
             return_to_menu
         end
 
         def publish_range
-        ("L O A D I N G! \n").split(" ").each {|c| print c ; sleep 0.25}
-            puts "\n\nI need a range of dates by year.\n\n" 
             ("L O A D I N G\n").split(" ").each {|c| print c ; sleep 0.25}
-            puts "\n"
-            puts "\nEarliest year first...\n\n"
+            puts "\n\nI need a range of dates by year.\n\n" 
+            puts "\nPlease enter the first four digit year (ex: 1990):\n\n"
             start_year = gets.chomp
             if start_year.downcase == "exit"
                 menu 
             elsif start_year.to_i == nil  
-                puts "WRONG! Try again please!"
-                puts "\n"
+                puts "\nWRONG! Try again please!"
+              
                 publish_range
             elsif start_year.to_i < 1900 
-                puts "WRONG! Try again please!"
-                puts "\n"
+                puts "\nWRONG! Try again please!"
+               
                 publish_range
             elsif start_year.to_i > 2099
-                puts "WRONG! Try again please!"
-                puts "\n"
+                puts "\nWRONG! Try again please!"
+                
                 publish_range
             else
                 start_year
             end
             puts "\n"
-            puts "Ok great! Now type in a 4 digit year END year\n\n"
+            puts "\nPlease enter the last four digit year (ex: 2010):\n\n"
             end_year = gets.chomp
             if end_year.downcase == "exit"
                 menu
             elsif end_year.to_i < 1900
-                puts "WRONG! Try again please!"
-                puts "\n"
+                puts "\nWRONG! Try again please!"
+                
                 publish_range
             elsif end_year.to_i < start_year.to_i
-                puts "WRONG! Try again please!"
-                puts "\n"
+                puts "\nWRONG! Try again please!"
                 publish_range
             else
                 end_year
@@ -124,66 +122,35 @@ require_relative '../config/environment.rb'
                 return_to_menu
             else
                 answer.map do |publication| 
-                puts "\n*\n#{publication.name}\n*\n\n"
+                puts "\n-#{publication.name}\n"
                 end
                 return_to_menu
             end
         end
 
-        # def find_user_character
-        #     puts "\n"
-        #     puts "Please choose a character:"
-        #     puts "\n"
-        #     index_with_character = Character.all.each_with_index {|character, ind| puts "#{ind+1}. #{character.name}\n"}
-        #     input = gets.chomp.to_i
-        #     return_character = index_with_character.find_all {|char| index_with_character.find_index(char)+1 == input}
-        #     return return_character[0]
-        # end
-
-        # def find_user_series
-        #     puts "\n"
-        #     puts "Please choose a series:"
-        #     puts "\n"
-        #     index_with_series = Series.all.each_with_index {|series, ind| puts "#{ind+1}. #{series.name}\n"}
-        #     input = gets.chomp.to_i
-        #     return_series = index_with_series.find_all {|series| index_with_series.find_index(series)+1 == input}
-        #     return return_series[0]
-        # end
-
-        # def find_user_comic
-        #     puts "\n"
-        #     puts "Please choose a comic:"
-        #     puts "\n"
-        #     index_with_comic = Comic.all.each_with_index {|comic, ind| puts "#{ind+1}. #{comic.name}\n"}
-        #     input = gets.chomp.to_i
-        #     return_comic = index_with_comic.find_all {|comic| index_with_comic.find_index(comic)+1 == input}
-        #     return return_comic[0]
-        # end
-
         def comics_for_character #3
             #this gives a list of characters to choose from, takes user input & returns comics name affiliated with character 
             found_character = find_user(Character).list_of_comics
-            answers = found_character.join(" || ")
+            answers = found_character.join(", ")
             puts "\n-\n#{answers}\n-\n\n"
             return_to_menu
         end
 
         def list_of_authors   #4
             found_authors = find_user(Character).authors
-            answers = found_authors.join(" \n      &")
+            answers = found_authors.join(" & ")
             puts "\n-\n#{answers}\n-\n\n"
             return_to_menu
         end
         
 
-        
         def view_series_for_character   #5
             puts "\n-\n#{find_user(Character).series_name}\n-\n\n"
             return_to_menu
         end
         
         def view_character_alias      #6
-            puts "\n-\n#{find_user(Series).alias}\n-\n\n"
+            puts "\n-\n#{find_user(Character).alias}\n-\n\n"
             return_to_menu
         end
 
@@ -195,22 +162,17 @@ require_relative '../config/environment.rb'
 
     
         def view_storylines_for_comics  #8
-
               puts "\n-\n#{find_user(Comic).storyline}\n-\n\n"
               return_to_menu
         end
 
         def return_to_menu
             # use gets to capture the user's input. This method should return that input, downcased.
-            puts "\n\n"
+            puts "\n"
             puts "Hit enter for menu"
             input = gets.chomp
             menu
         end
-
-
-
-
 
         def find_user(class_call)
             puts "\n"
@@ -218,8 +180,14 @@ require_relative '../config/environment.rb'
             puts "\n"
             index_with_comic = class_call.all.each_with_index {|a, ind| puts "#{ind+1}. #{a.name}\n"}
             input = gets.chomp.to_i
+            if input > index_with_comic.length || input < 1
+                puts "Please enter a valid number"
+                find_user(class_call)
+                
+            else
             return_comic = index_with_comic.find_all {|a| index_with_comic.find_index(a)+1 == input}
             return return_comic[0]
+            end
         end
 
 
