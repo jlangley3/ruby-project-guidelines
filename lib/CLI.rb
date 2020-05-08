@@ -105,14 +105,11 @@ puts "\n\n"
             start_year = gets.chomp
             if start_year.downcase == "exit"
                 return menu 
-               
             elsif start_year.to_i == nil  
                 puts "\nWRONG! Try again please!"
-              
                return publish_range
             elsif start_year.to_i < 1900 
                 puts "\nWRONG! Try again please!"
-               
                 return publish_range
             elsif start_year.to_i > 2099
                 puts "\nWRONG! Try again please!"
@@ -146,7 +143,6 @@ puts "\n\n"
                 end 
             end
            return return_to_menu
-          
         end
 
         def comics_for_character #3
@@ -193,7 +189,7 @@ puts "\n\n"
               return_to_menu
         end
 
-        def all_character_alias
+        def all_character_alias #9
            puts "\n"
            found_alias = Character.all_aliases
            answers = found_alias.join("\n")
@@ -202,7 +198,7 @@ puts "\n\n"
            return_to_menu
         end
         
-        def everything_from_a_character
+        def everything_from_a_character #10
             #findout everything for your favorite charcter
             character = find_user(Character)
             comics = character.list_of_comics.join(", ")
