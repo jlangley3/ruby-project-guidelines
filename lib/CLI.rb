@@ -190,9 +190,14 @@ puts "\n\n"
 
         def all_character_alias #9
            puts "\n"
-           found_alias = Character.all_aliases
-           answers = found_alias.join("\n")
-           puts "\n-\n#{answers}\n-\n\n"
+           names_new = Character.all.pluck(:name, :alias)
+           answer = names_new.map do |char|
+            char.join(": ")
+         end
+             puts "-"
+             puts answer
+             puts "-"
+             puts "\n\n"
            puts "*This is a list of all the character's secret identities*\n\n"
            return return_to_menu
         end
