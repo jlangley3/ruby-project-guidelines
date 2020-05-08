@@ -195,7 +195,7 @@ puts "\n\n"
            answers = found_alias.join("\n")
            puts "\n-\n#{answers}\n-\n\n"
            puts "*This is a list of all the character's secret identities*\n\n"
-           return_to_menu
+          return return_to_menu
         end
         
         def everything_from_a_character #10
@@ -210,7 +210,7 @@ puts "\n\n"
             puts "Series description:\n #{character.series.description}\n\n"
             puts "*This is a list of your chosen character's information*\n\n"
             
-            return_to_menu
+           return return_to_menu
         end
 
         def return_to_menu
