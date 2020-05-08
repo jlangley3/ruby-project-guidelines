@@ -25,6 +25,8 @@ require_relative '../config/environment.rb'
             puts "6. View a character's alias."
             puts "7. View decriptions for a series."
             puts "8. View the storyline for a comic."
+            puts "9. View the list of all the character's secret identities."
+            puts "10. Everything you want to know about a character."
             puts "\n\n"
             puts "Type 'exit' to leave."
             puts "\n"
@@ -65,6 +67,9 @@ require_relative '../config/environment.rb'
                     break
                 when user_call = 9
                     all_character_alias
+                    break
+                when user_call = 10
+                    everything_from_a_character
                     break
                 end
             end
@@ -181,9 +186,15 @@ require_relative '../config/environment.rb'
         end
         
         def everything_from_a_character
-            
             #findout everything for your favorite charcter
-
+            character = find_user(Character)
+            comics = character.list_of_comics.join(", ")
+            authors = character.authors.join(", ")
+            puts "Name: #{character.name}, Alias: #{character.alias}\n\n"
+            puts "Comics: #{comics}\n\n"
+            puts "Authors: #{authors}\n\n"
+            puts "Series: #{character.series_name}\n\n"
+            puts "Series description: #{character.series.description}\n\n"
         end
 
         def return_to_menu
@@ -198,14 +209,16 @@ require_relative '../config/environment.rb'
             puts "\n"
             puts "Please choose a #{class_call}:"
             puts "\n"
-            puts "(Type corresponding number)"
+            puts "(Type corresponding number)\n\n"
             index_with_comic = class_call.all.each_with_index {|a, ind| puts "#{ind+1}. #{a.name}\n"}
+            puts "\n"
             input = gets.chomp.to_i
             if input > index_with_comic.length || input < 1
                 puts "Please enter a valid number"
                 find_user(class_call) 
             else
             return_comic = index_with_comic.find_all {|a| index_with_comic.find_index(a)+1 == input}
+            # binding.pry
             return return_comic[0]
             end
         end

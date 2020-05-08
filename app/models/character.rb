@@ -24,4 +24,8 @@ class Character < ActiveRecord::Base
         series.name
     end
 
+    def series_description
+        series.description
+    end
+
 end
