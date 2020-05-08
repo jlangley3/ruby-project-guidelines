@@ -4,7 +4,7 @@ require_relative '../config/environment.rb'
 
         def welcome
         # Welcoming the user to our program
-           # Welcoming the user to our program
+puts "\n\n"       
 puts "                   **************\n"
 puts "                   Welcome to the  \n"
 puts "                   **************\n"
