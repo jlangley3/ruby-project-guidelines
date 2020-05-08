@@ -49,7 +49,7 @@ puts "\n\n"
         end
 
         def main_menu_loop
-            user_call = user_input 
+            user_call = user_input
             while user_call != "exit"
                 case user_call.to_i
                 when user_call = 1
@@ -82,10 +82,9 @@ puts "\n\n"
                 when user_call = 10
                     everything_from_a_character
                     break
-                when user_call != (1..10)
-                    puts "Not a valid option.\n\n"
-                   return return_to_menu
-                    break
+                else
+                    puts "Please enter a valid number."
+                    return return_to_menu
                 end
             end
         end
@@ -124,15 +123,15 @@ puts "\n\n"
                 return menu
             elsif end_year.to_i > 2099
                 puts "\nWRONG! Try again please!"
-               return publish_range
+                return publish_range
             elsif end_year.to_i < start_year.to_i
                 puts "\nWRONG! Try again please!"
-               return publish_range
+                return publish_range
             else
-             end_year
+                end_year
             end
-                    puts "\nPerfect! Thanks! \n"
-            answer = Comic.publish_range(start_year.to_i, end_year.to_i)
+                puts "\nPerfect! Thanks! \n"
+                answer = Comic.publish_range(start_year.to_i, end_year.to_i)
             if answer == []
                 puts "\n********************\n\n"
                 puts "Sorry No Results Found"
@@ -142,7 +141,7 @@ puts "\n\n"
                 puts "\n-#{publication.name}\n"
                 end 
             end
-           return return_to_menu
+            return return_to_menu
         end
 
         def comics_for_character #3
@@ -179,14 +178,14 @@ puts "\n\n"
         def view_descriptions_for_series  #7
             puts "\n-\n#{find_user(Series).description}\n-\n\n"
             puts "*This is your chosen series description*"
-          return_to_menu
+            return_to_menu
         end
 
     
         def view_storylines_for_comics  #8
             puts "\n-\n#{find_user(Comic).storyline}\n-\n\n"
             puts "*This is your chosen comic storyline*"
-              return_to_menu
+            return_to_menu
         end
 
         def all_character_alias #9
@@ -195,7 +194,7 @@ puts "\n\n"
            answers = found_alias.join("\n")
            puts "\n-\n#{answers}\n-\n\n"
            puts "*This is a list of all the character's secret identities*\n\n"
-          return return_to_menu
+           return return_to_menu
         end
         
         def everything_from_a_character #10
@@ -210,7 +209,7 @@ puts "\n\n"
             puts "Series description:\n #{character.series.description}\n\n"
             puts "*This is a list of your chosen character's information*\n\n"
             
-           return return_to_menu
+            return return_to_menu
         end
 
         def return_to_menu
@@ -231,7 +230,8 @@ puts "\n\n"
             input = gets.chomp.to_i
             if input > index_with_comic.length || input < 1
                 puts "Please enter a valid number"
-                find_user(class_call) 
+                sleep 1.00
+                return find_user(class_call) 
             else
             return_comic = index_with_comic.find_all {|a| index_with_comic.find_index(a)+1 == input}
             # binding.pry
