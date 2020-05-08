@@ -82,9 +82,10 @@ puts "\n\n"
                 when user_call = 10
                     everything_from_a_character
                     break
-                else
+                when user_call != (1..10)
                     puts "Not a valid option.\n\n"
-                    return_to_menu
+                   return return_to_menu
+                    break
                 end
             end
         end
@@ -103,34 +104,32 @@ puts "\n\n"
             puts "\nPlease enter the first four digit year (ex: 1990):\n\n"
             start_year = gets.chomp
             if start_year.downcase == "exit"
-                menu 
+                return menu 
             elsif start_year.to_i == nil  
                 puts "\nWRONG! Try again please!"
-              
-                publish_range
+               return publish_range
             elsif start_year.to_i < 1900 
                 puts "\nWRONG! Try again please!"
-               
-                publish_range
+                return publish_range
             elsif start_year.to_i > 2099
                 puts "\nWRONG! Try again please!"
-                publish_range
+                return publish_range
             else
-                start_year
+             start_year
             end
             puts "\n"
             puts "\nPlease enter the last four digit year (ex: 2010):\n\n"
             end_year = gets.chomp
             if end_year.downcase == "exit"
-                menu
+                return menu
             elsif end_year.to_i > 2099
                 puts "\nWRONG! Try again please!"
-                publish_range
+               return publish_range
             elsif end_year.to_i < start_year.to_i
                 puts "\nWRONG! Try again please!"
-                publish_range
+               return publish_range
             else
-                end_year
+             end_year
             end
                     puts "\nPerfect! Thanks! \n"
             answer = Comic.publish_range(start_year.to_i, end_year.to_i)
@@ -138,13 +137,12 @@ puts "\n\n"
                 puts "\n********************\n\n"
                 puts "Sorry No Results Found"
                 puts "\n********************\n"
-                return_to_menu
             else
                 answer.map do |publication| 
                 puts "\n-#{publication.name}\n"
-                end
-                return_to_menu
+                end 
             end
+           return return_to_menu
         end
 
         def comics_for_character #3
@@ -191,16 +189,16 @@ puts "\n\n"
               return_to_menu
         end
 
-        def all_character_alias
+        def all_character_alias #9
            puts "\n"
            found_alias = Character.all_aliases
            answers = found_alias.join("\n")
            puts "\n-\n#{answers}\n-\n\n"
            puts "*This is a list of all the character's secret identities*\n\n"
-           return_to_menu
+          return return_to_menu
         end
         
-        def everything_from_a_character
+        def everything_from_a_character #10
             #findout everything for your favorite charcter
             character = find_user(Character)
             comics = character.list_of_comics.join(", ")
@@ -209,10 +207,10 @@ puts "\n\n"
             puts "Comics: #{comics}\n\n"
             puts "Authors: #{authors}\n\n"
             puts "Series: #{character.series_name}\n\n"
-            puts "Series description: #{character.series.description}\n\n"
+            puts "Series description:\n #{character.series.description}\n\n"
             puts "*This is a list of your chosen character's information*\n\n"
             
-            return_to_menu
+           return return_to_menu
         end
 
         def return_to_menu
