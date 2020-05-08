@@ -84,7 +84,8 @@ puts "\n\n"
                     break
                 else
                     puts "Please enter a valid number."
-                    return return_to_menu
+                    sleep 1.00
+                    return menu
                 end
             end
         end
