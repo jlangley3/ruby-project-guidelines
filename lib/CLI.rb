@@ -71,6 +71,9 @@ require_relative '../config/environment.rb'
                 when user_call = 10
                     everything_from_a_character
                     break
+                else
+                    puts "Not a valid option.\n\n"
+                    return_to_menu
                 end
             end
         end
@@ -195,6 +198,8 @@ require_relative '../config/environment.rb'
             puts "Authors: #{authors}\n\n"
             puts "Series: #{character.series_name}\n\n"
             puts "Series description: #{character.series.description}\n\n"
+            puts "This is all of your character's information\n\n"
+            return_to_menu
         end
 
         def return_to_menu
