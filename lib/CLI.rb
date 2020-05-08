@@ -151,43 +151,43 @@ puts "\n\n"
             #this gives a list of characters to choose from, takes user input & returns comics name affiliated with character 
             found_character = find_user(Character).list_of_comics
             answers = found_character.join(", ")
-            puts "*These are all the comics for your chosen character*"
             puts "\n-\n#{answers}\n-\n\n"
+            puts "*These are all the comics for your chosen character*"
             return_to_menu
         end
 
         def list_of_authors   #4
             found_authors = find_user(Character).authors
             answers = found_authors.join(" & ")
-            puts "*This is who wrote your chosen character's comic*"
             puts "\n-\n#{answers}\n-\n\n"
+            puts "*This is who wrote your chosen character's comic*"
             return_to_menu
         end
         
 
         def view_series_for_character   #5
-            puts "*This is your chosen character's series*"
             puts "\n-\n#{find_user(Character).series_name}\n-\n\n"
+            puts "*This is your chosen character's series*"
             return_to_menu
         end
         
         def view_character_alias      #6
-            puts "*This is your chosen character's alias*"
             puts "\n-\n#{find_user(Character).alias}\n-\n\n"
+            puts "*This is your chosen character's alias*"
             return_to_menu
         end
 
         
         def view_descriptions_for_series  #7
-            puts "*This is your chosen series description*"
             puts "\n-\n#{find_user(Series).description}\n-\n\n"
+            puts "*This is your chosen series description*"
           return_to_menu
         end
 
     
         def view_storylines_for_comics  #8
-            puts "*This is your chosen comic storyline*"
             puts "\n-\n#{find_user(Comic).storyline}\n-\n\n"
+            puts "*This is your chosen comic storyline*"
               return_to_menu
         end
 
@@ -196,6 +196,7 @@ puts "\n\n"
            found_alias = Character.all_aliases
            answers = found_alias.join("\n")
            puts "\n-\n#{answers}\n-\n\n"
+           puts "*This is a list of all the character's secret identities*\n\n"
            return_to_menu
         end
         
@@ -204,12 +205,12 @@ puts "\n\n"
             character = find_user(Character)
             comics = character.list_of_comics.join(", ")
             authors = character.authors.join(", ")
-            puts "*This is a list of your chosen character's information*\n\n"
             puts "Name: #{character.name}, Alias: #{character.alias}\n\n"
             puts "Comics: #{comics}\n\n"
             puts "Authors: #{authors}\n\n"
             puts "Series: #{character.series_name}\n\n"
             puts "Series description: #{character.series.description}\n\n"
+            puts "*This is a list of your chosen character's information*\n\n"
             
             return_to_menu
         end
